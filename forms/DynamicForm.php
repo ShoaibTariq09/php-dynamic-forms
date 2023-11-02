@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Created by IntelliJ IDEA.
- * User: erdal
- * Date: 14.01.2019
+ * Created by Shoaib Tariq.
+ * User: shoaib
+ * Date: 02.11.2023
  * Time: 11:03
  */
 
@@ -25,7 +25,7 @@ use \DynamicForm\Fields\Validators\Required,
     \DynamicForm\Fields\Validators\Date,
     \DynamicForm\Fields\Validators\Regex;
 
-class TestForm extends Form
+class DynamicForm extends Form
 {
     public function __construct($array)
     {

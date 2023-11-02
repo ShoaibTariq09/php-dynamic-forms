@@ -4,9 +4,9 @@ session_start();
 include('config.php');
 
 /**
- * Created by IntelliJ IDEA.
- * User: erdal
- * Date: 08.02.2018
+ * Created by Shoaib Tariq.
+ * User: shoaib
+ * Date: 02.11.2023
  * Time: 14:11
  */
 //header('Content-Type: application/json; charset=UTF-8');
@@ -20,26 +20,8 @@ spl_autoload_register(function ($class) {
     $filename = BASE_PATH . '/../src/' . str_replace('\\', '/', $class) . '.php';
     require_once '' . $filename;
 });
+
 /*------------config for test-------------*/
-// echo '<pre>';
-
-// print_r($_POST) ;die;
-
-// $data = json_decode(file_get_contents('php://input'), true);
-// // print_r($data);
-// $request = [];
-
-// if ($data != '') {
-//     $_SESSION['form-data'] = $data;
-//     // header('location:examples.php');  //reload preview.php with the `my_data`
-//     // echo 'heeeee';
-// }
-
-// $request = $_SESSION['form-data'];
-// print_r($request);
-
-// $outputData = isset($_SESSION['output-data']) ? $_SESSION['output-data'] : [];
-
 
 if (isset($_GET['formID'])) {
     $id = $_GET['formID'];
@@ -55,26 +37,26 @@ if (isset($_GET['formID'])) {
 error_reporting(E_ALL ^ E_WARNING);
 
 
-require_once 'TestForm.php';
+require_once 'DynamicForm.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json; charset=UTF-8');
 
     if (isset($_GET['form'])) {
-        $form = new TestForm($request);
+        $form = new DynamicForm($request);
         echo json_encode($form);
         exit;
     } elseif (isset($_GET['valid'])) {
-        $form = new TestForm($request);
+        $form = new DynamicForm($request);
         var_dump($form->isValid($_POST));
         exit;
     } elseif (isset($_GET['messages'])) {
-        $form = new TestForm($request);
+        $form = new DynamicForm($request);
         echo json_encode($form->getErrorMessages($_POST));
         // $errorMessages = json_encode($form->getErrorMessages($_POST));
         exit;
     } elseif (isset($_GET['submit'])) {
-        $form = new TestForm($data);
+        $form = new DynamicForm($data);
         echo json_encode($form);
         exit;
     }
@@ -137,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             var wrapper = $("#form-wrapper");
             wrapper.html("");
-            $.post("examples.php?" + requet + "=1&formID=<?php echo $_GET['formID']; ?>", function(res) {
+            $.post("forms.php?" + requet + "=1&formID=<?php echo $_GET['formID']; ?>", function(res) {
                 console.log(res)
                 var wrapper = $("#form-wrapper");
                 wrapper.append("<h1 align='center'>" + res.title + "</h1>");
@@ -185,13 +167,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         });
         $(".test-data").click(function() {
-            $.post("examples.php?valid=1", getFormData(), function(res) {
+            $.post("forms.php?valid=1", getFormData(), function(res) {
 
             });
         });
         $(".output").click(function() {
             // alert('heeeeeeee')
-            $.post("examples.php?messages=1&formID=<?php echo $_GET['formID']; ?>", getFormData(), function(res) {
+            $.post("forms.php?messages=1&formID=<?php echo $_GET['formID']; ?>", getFormData(), function(res) {
                 // console.log(res)
                 $.each(res, function(index, value) {
                     alert(value.text);
@@ -209,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         var submitForm = function() {
             $.post("process.php?submit=1&formID=<?php echo $_GET['formID']; ?>", getFormData(), function(res) {
 
-                window.location.href = "examples.php?submit=1&formID=<?php echo $_GET['formID']; ?>";
+                window.location.href = "forms.php?submit=1&formID=<?php echo $_GET['formID']; ?>";
 
 
             });

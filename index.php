@@ -37,7 +37,7 @@ $inputTypes = ["Text", "Date", "Email", "TextArea", "Select", "CheckBox", "Radio
     <div class="container">
         <h2 align="center">Dynamically Add or Remove input fields in PHP with JQuery</h2><br />
         <div class="form-group">
-            <form name="add_name" id="add_name" method="post" action="examples/examples.php">
+            <form name="add_name" id="add_name" method="post" action="forms/forms.php">
                 <div class="table-responsive">
                     <div class="form-control name_list">
                         <label for="form-name">Form Name</label>
@@ -170,9 +170,9 @@ $inputTypes = ["Text", "Date", "Email", "TextArea", "Select", "CheckBox", "Radio
                 dataType: 'json',
                 processData: false,
                 type: 'POST',
-                url: 'examples/process.php',
+                url: 'forms/process.php',
                 success: function(data) {
-                    window.location.href = "examples/examples.php?form=1&formID=" + data;
+                    window.location.href = "forms/forms.php?form=1&formID=" + data;
 
                 },
                 error: function() {
