@@ -1,6 +1,16 @@
 # php-dynamic-forms
 
+```DB
+STEP#1: create database with name 'dynamic-form';
+STEP#2: create following table:
+CREATE TABLE `dynamic-form`.`dynamic_forms` (`id` BIGINT(11) UNSIGNED NOT NULL AUTO_INCREMENT , `request` TEXT NOT NULL , `request_data` TEXT NOT NULL , `created_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+```
+
 ### USAGE
+
+start apache and run project on localhost
+
+run project http://localhost/dynamic-form/
 
 ```php
 <?php
